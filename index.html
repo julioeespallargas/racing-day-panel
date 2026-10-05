@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Masía Racing Day · Panel del proyecto</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1F2D4D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Racing Day">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  --cal:#FAFAF7; --tinta:#1F2D4D; --porton:#2E4F9E; --naranja:#B5441A; --piedra:#E2DFD6; --texto:#2A3142; --suave:#596173; --papel:#FFFFFF;
+  --ok:#2F6B3A;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --cal:#121826; --tinta:#E7EAF2; --porton:#8FB0F5; --naranja:#F0925E; --piedra:#2A3346; --texto:#DDE1EA; --suave:#A3AABB; --papel:#182033; --ok:#7FC48D; } }
+:root[data-theme="dark"]{ --cal:#121826; --tinta:#E7EAF2; --porton:#8FB0F5; --naranja:#F0925E; --piedra:#2A3346; --texto:#DDE1EA; --suave:#A3AABB; --papel:#182033; --ok:#7FC48D; }
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cal);color:var(--texto);font-family:'Barlow','Segoe UI',system-ui,sans-serif;font-size:16px;line-height:1.5}
+a{color:var(--porton)}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;color:var(--tinta);margin:0;font-weight:600}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header.hero{padding:40px 24px 8px}
+.hero .top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.hero h1{font-size:clamp(40px,6vw,64px);line-height:1;letter-spacing:.01em}
+.hero .by{margin:6px 0 0;color:var(--suave);font-size:17px}
+.count{text-align:right}
+.count .num{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(56px,9vw,96px);line-height:.9;color:var(--tinta);font-weight:700}
+.count .lab{color:var(--suave);font-size:15px}
+.masia{width:100%;height:auto;display:block;margin:20px 0 0;color:var(--tinta)}
+@media (prefers-reduced-motion:no-preference){
+  .masia *{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.2s cubic-bezier(.6,.1,.3,1) forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+nav.sections{position:sticky;top:0;z-index:5;background:var(--cal);border-bottom:1px solid var(--piedra);padding-top:env(safe-area-inset-top,0px)}
+nav.sections ul{display:flex;gap:4px;list-style:none;margin:0 auto;padding:10px 24px;max-width:1080px;overflow-x:auto}
+nav.sections a{display:block;padding:8px 12px;border-radius:6px;text-decoration:none;color:var(--texto);font-weight:500;white-space:nowrap}
+nav.sections a:hover,nav.sections a:focus-visible{background:var(--piedra)}
+section{padding:44px 0 8px}
+section>h2{font-size:34px;margin-bottom:6px}
+section>.intro{color:var(--suave);margin:0 0 22px;max-width:65ch}
+.estado{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px}
+.pasos{list-style:none;margin:0;padding:0;border-top:1px solid var(--piedra)}
+.pasos li{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--piedra)}
+.pasos .n{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;color:var(--suave)}
+.pasos strong{color:var(--tinta);font-weight:600}
+.pasos p{margin:2px 0 0;color:var(--suave);font-size:14px}
+.badge{font-size:13px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.badge.done{color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.badge.prog{color:var(--naranja);background:color-mix(in srgb,var(--naranja) 12%,transparent)}
+.cifras{background:var(--papel);border:1px solid var(--piedra);border-radius:10px;padding:20px 22px}
+.cifras h3{font-size:24px;margin-bottom:4px}
+.cifras .note{color:var(--suave);font-size:13px;margin:0 0 14px}
+.cifras dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:8px 16px}
+.cifras dt{color:var(--suave)}
+.cifras dd{margin:0;text-align:right;font-weight:600;color:var(--tinta);font-variant-numeric:tabular-nums}
+.progress{margin-top:18px}
+.bar{height:8px;background:var(--piedra);border-radius:8px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--porton);transition:width .4s}
+.progress p{margin:6px 0 0;font-size:14px;color:var(--suave)}
+.docs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 36px}
+.docgroup h3{font-size:24px;margin-bottom:8px}
+.docgroup ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--piedra)}
+.doc{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--piedra)}
+.doc h4{font-family:'Barlow',sans-serif;font-size:17px;font-weight:600}
+.doc p{margin:2px 0 0;color:var(--suave);font-size:14px}
+.kind{font-size:12px;color:var(--suave)}
+.open{flex-shrink:0;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid var(--porton);border-radius:8px;color:var(--porton);text-decoration:none;font-weight:600}
+.open:hover,.open:focus-visible{background:var(--porton);color:var(--papel)}
+.nolink{flex-shrink:0;font-size:13px;color:var(--suave);max-width:120px;text-align:right}
+.pend{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:36px}
+.pend h3,.cgroup h3{font-size:24px;margin-bottom:8px}
+ul.tasks{list-style:none;margin:0;padding:0;border-top:1px solid var(--piedra)}
+ul.tasks li{border-bottom:1px solid var(--piedra)}
+.task{display:grid;grid-template-columns:24px 1fr auto;gap:4px 12px;align-items:center;padding:10px 0;cursor:pointer;min-height:44px}
+.task input{width:20px;height:20px;accent-color:var(--porton);margin:0}
+.task .who{font-size:13px;color:var(--suave);white-space:nowrap}
+.task .due{grid-column:2/4;font-size:13px;color:var(--suave)}
+.task input:checked~.lbl{text-decoration:line-through;color:var(--suave)}
+.gest.soon .due{color:var(--naranja);font-weight:600}
+.gest.late .due{color:var(--naranja);font-weight:700}
+.gest .task{grid-template-columns:24px 1fr auto}
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline:before{content:"";position:absolute;left:15px;top:6px;bottom:6px;width:1.5px;background:var(--piedra)}
+.cal{position:relative;display:grid;grid-template-columns:220px 1fr;gap:16px;padding:12px 0}
+.cal .when{display:flex;gap:14px;align-items:center;font-weight:600;color:var(--tinta)}
+.cal .n{position:relative;z-index:1;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--cal);border:1.5px solid var(--piedra);font-size:14px;color:var(--suave)}
+.cal ul{margin:0;padding:0 0 0 18px;color:var(--texto)}
+.cal.now .n{background:var(--porton);border-color:var(--porton);color:var(--papel)}
+.cal.now .when span:last-child:after{content:" · ahora";color:var(--porton);font-weight:500}
+.cal.past{opacity:.55}
+.cal.piloto .n{border-color:var(--naranja);color:var(--naranja)}
+.cal.piloto .when{color:var(--naranja)}
+.dia{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:36px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{font:inherit;cursor:pointer;min-height:44px;padding:8px 14px;border-radius:8px;border:1.5px solid var(--piedra);background:var(--papel);color:var(--texto);text-align:left;display:flex;flex-direction:column;font-weight:600}
+.tabs button small{font-weight:400;color:var(--suave);font-size:13px}
+.tabs button[aria-selected="true"]{border-color:var(--porton);box-shadow:inset 0 0 0 1px var(--porton)}
+.moto{margin:0 0 8px;color:var(--suave);font-size:14px}
+table{width:100%;border-collapse:collapse}
+td{padding:7px 0;border-bottom:1px solid var(--piedra);vertical-align:top}
+td:first-child{width:64px;font-variant-numeric:tabular-nums;font-weight:600;color:var(--tinta)}
+.side h3{font-size:24px;margin:0 0 8px}
+.side+.side{margin-top:28px}
+.roles{list-style:none;margin:0;padding:0}
+.roles li{padding:8px 0;border-bottom:1px solid var(--piedra)}
+.roles strong{color:var(--tinta)}
+.sem{list-style:none;margin:0;padding:0}
+.sem li{display:grid;grid-template-columns:14px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--piedra)}
+.dot{width:12px;height:12px;border-radius:50%;margin-top:6px}
+.proto{margin:0;padding-left:22px}
+.proto li{padding:4px 0}
+.checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 32px}
+.checkhead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.checkhead .intro{margin:0}
+.reset{font:inherit;font-weight:600;min-height:44px;padding:0 16px;border-radius:8px;border:1.5px solid var(--piedra);background:var(--papel);color:var(--texto);cursor:pointer}
+.reset:hover,.reset:focus-visible{border-color:var(--naranja);color:var(--naranja)}
+footer{padding:48px 0 40px;color:var(--suave);font-size:14px}
+:focus-visible{outline:2px solid var(--porton);outline-offset:2px}
+@media (max-width:860px){
+  .estado,.pend,.dia,.docs{grid-template-columns:1fr}
+  .checks{grid-template-columns:1fr}
+  .cal{grid-template-columns:1fr;gap:6px} .cal ul{padding-left:64px}
+  .count{text-align:left}
+}
+@media (min-width:861px) and (max-width:1000px){ .checks{grid-template-columns:repeat(2,minmax(0,1fr))} }
+</style>
+</head>
+<body>
+<header class="hero wrap">
+  <div class="top">
+    <div>
+      <h1>Masía Racing Day</h1>
+      <p class="by">Panel del proyecto · by Masía Torregrosa</p>
+    </div>
+    <div class="count" aria-live="polite">
+      <div class="num" id="days">–</div>
+      <div class="lab" id="dayslab">días para la jornada piloto · sábado 16 de enero</div>
+    </div>
+  </div>
+  <svg class="masia" viewBox="20 88 350 96" fill="none" stroke="currentColor" stroke-width="0.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line pathLength="1" x1="24" y1="180" x2="366" y2="180"/>
+<polyline pathLength="1" points="40,180 40,112 200,112 200,180"/>
+<line pathLength="1" x1="36" y1="112" x2="204" y2="112"/>
+<line pathLength="1" x1="38" y1="109.5" x2="202" y2="109.5"/>
+<line pathLength="1" x1="36" y1="112" x2="38" y2="109.5"/>
+<line pathLength="1" x1="204" y1="112" x2="202" y2="109.5"/>
+<polyline pathLength="1" points="38,109.5 52,101 188,101 202,109.5"/>
+<line pathLength="1" x1="45" y1="105.2" x2="195" y2="105.2"/>
+<circle pathLength="1" cx="101" cy="99.6" r="1.4"/>
+<circle pathLength="1" cx="143" cy="99.6" r="1.4"/>
+<rect pathLength="1" x="82" y="128" width="12" height="18"/>
+<polyline pathLength="1" points="79.5,125.5 88.0,120.5 96.5,125.5 79.5,125.5"/>
+<rect pathLength="1" x="108" y="128" width="8" height="18"/>
+<polyline pathLength="1" points="105.5,125.5 112.0,120.5 118.5,125.5 105.5,125.5"/>
+<rect pathLength="1" x="162" y="128" width="12" height="18"/>
+<polyline pathLength="1" points="159.5,125.5 168.0,120.5 176.5,125.5 159.5,125.5"/>
+<rect pathLength="1" x="85" y="160" width="15" height="15"/>
+<polyline pathLength="1" points="82.5,157.5 92.5,152.5 102.5,157.5 82.5,157.5"/>
+<rect pathLength="1" x="130" y="160" width="9" height="15"/>
+<polyline pathLength="1" points="127.5,157.5 134.5,153.5 141.5,157.5 127.5,157.5"/>
+<rect pathLength="1" x="161" y="160" width="11" height="15"/>
+<polyline pathLength="1" points="158.5,157.5 166.5,152.5 174.5,157.5 158.5,157.5"/>
+<polyline pathLength="1" points="200,147 348,147 348,180"/>
+<rect pathLength="1" x="224" y="156" width="32" height="24"/>
+<line pathLength="1" x1="240" y1="156" x2="240" y2="180"/>
+<rect pathLength="1" x="231" y="150" width="18" height="3.8"/>
+<line pathLength="1" x1="267" y1="147" x2="269" y2="113"/>
+<line pathLength="1" x1="284" y1="147" x2="282" y2="113"/>
+<line pathLength="1" x1="268" y1="130" x2="283" y2="130"/>
+<line pathLength="1" x1="268" y1="130" x2="283" y2="147"/>
+<line pathLength="1" x1="283" y1="130" x2="268" y2="147"/>
+<rect pathLength="1" x="263" y="96" width="23" height="17"/>
+<path pathLength="1" d="M263 96 Q274.5 92 286 96" />
+<polyline pathLength="1" points="312,147 312,126 336,126 336,147"/>
+<polyline pathLength="1" points="310,126 324,114 338,126 310,126"/></svg>
+</header>
+
+<nav class="sections" aria-label="Secciones">
+  <ul>
+    <li><a href="#estado">Estado</a></li>
+    <li><a href="#documentos">Documentos</a></li>
+    <li><a href="#pendiente">Pendiente</a></li>
+    <li><a href="#calendario">Calendario</a></li>
+    <li><a href="#dia">El día</a></li>
+    <li><a href="#checklist">Checklist del evento</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+<section id="estado">
+  <h2>Estado</h2>
+  <p class="intro">Los seis pasos del proyecto. Lo creativo y estratégico está hecho; lo que queda son gestiones y piezas comerciales.</p>
+  <div class="estado">
+    <ol class="pasos">
+      <li><span class="n">1</span><div><strong>Itinerario</strong><p>3 versiones según el tamaño del grupo</p></div><span class="badge done">Hecho</span></li>
+      <li><span class="n">2</span><div><strong>Producto</strong><p>Comida, bebida, equipación, nombre y marca</p></div><span class="badge done">Hecho</span></li>
+      <li><span class="n">3</span><div><strong>Operativa</strong><p>Equipo, cronometraje, plan B de lluvia, checklist</p></div><span class="badge done">Hecho</span></li>
+      <li><span class="n">4</span><div><strong>Legal y seguridad</strong><p>Descargo y normas listos · falta el seguro</p></div><span class="badge prog">Falta seguro</span></li>
+      <li><span class="n">5</span><div><strong>Económico</strong><p>Excel hecho · faltan datos reales de seguro y comida</p></div><span class="badge prog">Por confirmar</span></li>
+      <li><span class="n">6</span><div><strong>Comercial y lanzamiento</strong><p>One-pager, condiciones y formularios · faltan difusión y web</p></div><span class="badge prog">En curso</span></li>
+    </ol>
+    <div class="cifras">
+      <h3>Cifras clave</h3>
+      <p class="note">Estimaciones del Excel; cambian al confirmar seguro y comida.</p>
+      <dl>
+        <dt>Pack 8 personas</dt><dd>1.400 €</dd>
+        <dt>Pack 12 personas</dt><dd>1.500 €</dd>
+        <dt>Pack 16 personas</dt><dd>1.680 €</dd>
+        <dt>Inversión inicial</dt><dd>≈ 5.300 €</dd>
+        <dt>Punto muerto</dt><dd>≈ 6 eventos al año</dd>
+        <dt>Objetivo primer año</dt><dd>25–30 eventos</dd>
+      </dl>
+      <div class="progress">
+        <div class="bar" role="progressbar" aria-label="Gestiones y decisiones completadas" aria-valuemin="0" aria-valuemax="100" id="pbar"><span id="pfill"></span></div>
+        <p id="ptext">Gestiones y decisiones: 0 de 0 hechas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="documentos">
+  <h2>Documentos</h2>
+  <p class="intro">Todo lo que hemos creado. Los documentos y diseños se abren en Claude; el Excel y el programa están en la conversación.</p>
+  <div class="docs"><div class="docgroup"><h3>Legal y seguridad</h3><ul><li class="doc"><div><span class="kind">Documento</span><h4>Descargo y normas de pista</h4><p>Normas de pista, declaración de riesgos, imagen y firma. Edad mínima: 18.</p></div><a class="open" href="https://claude.ai/code/artifact/68505b65-23e0-4a74-acc6-b0144afc7f31" target="_blank" rel="noopener">Abrir</a></li><li class="doc"><div><span class="kind">Documento</span><h4>Condiciones de reserva</h4><p>Packs, señal del 30%, cancelaciones, lluvia y requisitos.</p></div><a class="open" href="https://claude.ai/code/artifact/c94e37ca-2e0c-419f-a9d5-0957d9571cb1" target="_blank" rel="noopener">Abrir</a></li></ul></div><div class="docgroup"><h3>Comercial</h3><ul><li class="doc"><div><span class="kind">Diseño</span><h4>One-pager</h4><p>Hoja A4 para enviar a amigos y empresas. Faltan precios, contacto y QR.</p></div><a class="open" href="https://claude.ai/artifact/AZDBcZgLNy5jXAAKVEMtjH" target="_blank" rel="noopener">Abrir</a></li><li class="doc"><div><span class="kind">Documento</span><h4>Formularios de reserva</h4><p>Solicitud de reserva y ficha de participante, listos para Google Forms.</p></div><a class="open" href="https://claude.ai/code/artifact/219da792-58b4-4a81-aa93-f1fc1986ea45" target="_blank" rel="noopener">Abrir</a></li></ul></div><div class="docgroup"><h3>Marca</h3><ul><li class="doc"><div><span class="kind">Diseño</span><h4>Logo de Masía Torregrosa</h4><p>Completo, horizontal, negativo, simplificado, isotipo y sello.</p></div><a class="open" href="https://claude.ai/artifact/G6tugr3M3Ez8CJNMu9LocR" target="_blank" rel="noopener">Abrir</a></li></ul></div><div class="docgroup"><h3>Archivos en la conversación</h3><ul><li class="doc"><div><span class="kind">Excel</span><h4>Modelo económico (Excel)</h4><p>Masia_Racing_Day_Economico.xlsx · precios por pack y escenarios.</p></div><span class="nolink">Descárgalo desde el chat</span></li><li class="doc"><div><span class="kind">Código</span><h4>Programa de cronometraje</h4><p>masia_timer.py + LEEME.md · cronometraje por cámara y tabla de tiempos.</p></div><span class="nolink">Descárgalo desde el chat</span></li></ul></div></div>
+</section>
+
+<section id="pendiente">
+  <h2>Pendiente</h2>
+  <p class="intro">Marca cada tarea al terminarla; se guarda en este navegador. En naranja, lo que vence en menos de 15 días o ya ha vencido.</p>
+  <div class="pend">
+    <div><h3>Gestiones</h3><ul class="tasks"><li class="gest" data-due="2026-10-31"><label class="task"><input type="checkbox" data-id="g-comida"><span class="lbl">Coste real de comida y bebida por persona → Excel</span><span class="who">Papá</span><span class="due"></span></label></li><li class="gest" data-due="2026-11-30"><label class="task"><input type="checkbox" data-id="g-gestor"><span class="lbl">Gestor y ayuntamiento: licencia, turismo activo y figura fiscal</span><span class="who">Julio</span><span class="due"></span></label></li><li class="gest" data-due="2026-11-30"><label class="task"><input type="checkbox" data-id="g-compras"><span class="lbl">Comprar 2 juegos de equipación, dorsales y cámaras</span><span class="who">Julio / M</span><span class="due"></span></label></li><li class="gest" data-due="2026-11-30"><label class="task"><input type="checkbox" data-id="g-videos"><span class="lbl">Grabar vídeos con dorsales para probar el cronometraje</span><span class="who">M</span><span class="due"></span></label></li><li class="gest" data-due="2026-11-30"><label class="task"><input type="checkbox" data-id="g-forms"><span class="lbl">Montar los dos formularios en Google Forms y generar el QR</span><span class="who">Julio</span><span class="due"></span></label></li><li class="gest" data-due="2026-11-30"><label class="task"><input type="checkbox" data-id="g-web"><span class="lbl">Sección del Racing Day en la web de la masía</span><span class="who">Julio</span><span class="due"></span></label></li><li class="gest" data-due="2026-12-31"><label class="task"><input type="checkbox" data-id="g-seguro"><span class="lbl">Seguro RC + accidentes contratado (federación o corredor)</span><span class="who">Julio</span><span class="due"></span></label></li><li class="gest" data-due="2026-12-31"><label class="task"><input type="checkbox" data-id="g-invit"><span class="lbl">Invitaciones a la jornada piloto (12 personas)</span><span class="who">Julio</span><span class="due"></span></label></li><li class="gest" data-due="2027-01-15"><label class="task"><input type="checkbox" data-id="g-curso"><span class="lbl">Curso de primeros auxilios</span><span class="who">Julio / M</span><span class="due"></span></label></li></ul></div>
+    <div><h3>Decisiones tuyas</h3><ul class="tasks"><li><label class="task"><input type="checkbox" data-id="d-adicional"><span class="lbl">Precio por persona adicional (grupos de 9–11 y 13–15)</span></label></li><li><label class="task"><input type="checkbox" data-id="d-extras"><span class="lbl">Precio de los extras: vídeo, tanda extra, noche en la masía</span></label></li><li><label class="task"><input type="checkbox" data-id="d-pago"><span class="lbl">¿Cobran M y Papá por evento?</span></label></li><li><label class="task"><input type="checkbox" data-id="d-comisario"><span class="lbl">Quién hace de comisario por la tarde</span></label></li><li><label class="task"><input type="checkbox" data-id="d-precios"><span class="lbl">Precios finales de los packs para el one-pager</span></label></li></ul></div>
+  </div>
+</section>
+
+<section id="calendario">
+  <h2>Calendario hacia la piloto</h2>
+  <p class="intro">El tramo actual aparece marcado. El cuello de botella es el seguro: sin él no hay jornada piloto.</p>
+  <ol class="timeline"><li class="cal" data-from="2026-10-01" data-to="2026-10-31"><div class="when"><span class="n">1</span><span>Octubre 2026</span></div><ul><li>Escribir a gestor, ayuntamiento, federación y corredor</li><li>Coste real de la comida con Papá</li></ul></li><li class="cal" data-from="2026-11-01" data-to="2026-11-30"><div class="when"><span class="n">2</span><span>Noviembre 2026</span></div><ul><li>Formularios, web y QR</li><li>Compras de equipación, dorsales y cámaras</li><li>Vídeos de prueba del cronometraje</li></ul></li><li class="cal" data-from="2026-12-01" data-to="2026-12-31"><div class="when"><span class="n">3</span><span>Diciembre 2026</span></div><ul><li>Seguro contratado antes del 31</li><li>Invitaciones a la piloto</li><li>Curso de primeros auxilios al volver</li></ul></li><li class="cal" data-from="2027-01-01" data-to="2027-01-10"><div class="when"><span class="n">4</span><span>1–10 enero</span></div><ul><li>Revisión completa de motos y repuestos</li><li>Ensayo interno en familia</li><li>Recoger fichas de participante</li></ul></li><li class="cal" data-from="2027-01-11" data-to="2027-01-15"><div class="when"><span class="n">5</span><span>11–15 enero</span></div><ul><li>Checklist de 7 días, 48 h y 24 h</li></ul></li><li class="cal piloto" data-from="2027-01-16" data-to="2027-01-16"><div class="when"><span class="n">6</span><span>Sábado 16 de enero</span></div><ul><li>Jornada piloto · cierre a las 17:30 por la luz</li></ul></li><li class="cal" data-from="2027-01-17" data-to="2027-01-31"><div class="when"><span class="n">7</span><span>Finales de enero</span></div><ul><li>Analizar datos y encuesta; ajustar itinerario y precios</li></ul></li><li class="cal" data-from="2027-02-01" data-to="2027-02-28"><div class="when"><span class="n">8</span><span>Febrero</span></div><ul><li>Fase 1: primeros eventos de pago con el círculo cercano</li></ul></li><li class="cal" data-from="2027-03-01" data-to="2027-05-31"><div class="when"><span class="n">9</span><span>Marzo – mayo</span></div><ul><li>Temporada fuerte de primavera</li></ul></li></ol>
+</section>
+
+<section id="dia">
+  <h2>El día</h2>
+  <p class="intro">Itinerario según el tamaño del grupo, el equipo y los planes de contingencia. En enero, cierre a las 17:30 por la luz.</p>
+  <div class="dia">
+    <div><div class="tabs" role="tablist"><button type="button" role="tab" aria-selected="false" data-tab="A">Versión A<small>8 personas · 2 grupos de 4</small></button><button type="button" role="tab" aria-selected="true" data-tab="B">Versión B<small>9–12 personas · 3 grupos</small></button><button type="button" role="tab" aria-selected="false" data-tab="C">Versión C<small>13–16 personas · 4 grupos</small></button></div><div class="panel" data-panel="A" hidden><p class="moto">Tiempo en moto: ~52 min por persona</p><table><tbody><tr><td>10:00</td><td>Bienvenida, café, registro y descargos</td></tr><tr><td>10:30</td><td>Briefing de seguridad y equipación</td></tr><tr><td>11:00</td><td>Entreno 1 · 2 × 12 min</td></tr><tr><td>11:30</td><td>Clínic técnico y reagrupación por tiempos</td></tr><tr><td>12:00</td><td>Entreno 2 por niveles · 2 × 12 min</td></tr><tr><td>12:30</td><td>Qualy · 2 × 8 min</td></tr><tr><td>12:50</td><td>Taller de mecánica y foto de grupo</td></tr><tr><td>13:30</td><td>Comida</td></tr><tr><td>15:30</td><td>Briefing de carrera</td></tr><tr><td>15:45</td><td>Carreras, ronda 1</td></tr><tr><td>16:15</td><td>Carreras, ronda 2 con parrilla invertida</td></tr><tr><td>16:45</td><td>Superfinal · 4 mejores tiempos</td></tr><tr><td>17:05</td><td>Margen o tanda libre</td></tr><tr><td>17:30</td><td>Podio, trofeos y tercer tiempo</td></tr><tr><td>18:00</td><td>Fin</td></tr></tbody></table></div><div class="panel" data-panel="B"><p class="moto">Tiempo en moto: ~40 min por persona</p><table><tbody><tr><td>10:00</td><td>Bienvenida, café, registro y descargos</td></tr><tr><td>10:30</td><td>Briefing de seguridad y equipación</td></tr><tr><td>11:00</td><td>Entreno 1 · 3 × 12 min</td></tr><tr><td>11:45</td><td>Clínic técnico y reagrupación por tiempos</td></tr><tr><td>12:15</td><td>Qualy · 3 × 8 min</td></tr><tr><td>12:50</td><td>Taller de mecánica y foto de grupo</td></tr><tr><td>13:30</td><td>Comida</td></tr><tr><td>15:30</td><td>Briefing de carrera</td></tr><tr><td>15:45</td><td>Carreras, ronda 1</td></tr><tr><td>16:30</td><td>Carreras, ronda 2 con parrilla invertida</td></tr><tr><td>17:15</td><td>Superfinal · 4 mejores tiempos</td></tr><tr><td>17:30</td><td>Podio, trofeos y tercer tiempo</td></tr><tr><td>18:00</td><td>Fin</td></tr></tbody></table></div><div class="panel" data-panel="C" hidden><p class="moto">Tiempo en moto: ~30 min por persona</p><table><tbody><tr><td>10:00</td><td>Bienvenida, café, registro y descargos</td></tr><tr><td>10:30</td><td>Briefing de seguridad y equipación</td></tr><tr><td>11:00</td><td>Entreno 1 · 4 × 12 min</td></tr><tr><td>12:00</td><td>Clínic técnico y reagrupación por tiempos</td></tr><tr><td>12:30</td><td>Qualy · 4 × 8 min</td></tr><tr><td>13:15</td><td>Foto de grupo y pole positions</td></tr><tr><td>13:30</td><td>Comida</td></tr><tr><td>15:30</td><td>Briefing de carrera</td></tr><tr><td>15:45</td><td>Carreras, ronda 1</td></tr><tr><td>16:45</td><td>Superfinal · 4 mejores tiempos</td></tr><tr><td>17:05</td><td>Margen para retrasos</td></tr><tr><td>17:30</td><td>Podio, trofeos y tercer tiempo</td></tr><tr><td>18:00</td><td>Fin</td></tr></tbody></table></div></div>
+    <div>
+      <div class="side">
+        <h3>Equipo</h3>
+        <ul class="roles">
+          <li><strong>Julio</strong> · director de carrera, cronometraje, briefings y clientes</li>
+          <li><strong>M</strong> · mecánico: revisiones, gasolina y repuestos entre tandas</li>
+          <li><strong>Papá</strong> · cocina y bebida, de 12:00 a 15:30</li>
+          <li><strong>Comisario</strong> · banderas y fotos por la tarde (por decidir)</li>
+        </ul>
+      </div>
+      <div class="side">
+        <h3>Semáforo de lluvia</h3>
+        <ul class="sem">
+          <li><span class="dot" style="background:#2F8F4E"></span><span><strong>Verde</strong> · seco o llovizna: programa normal</span></li>
+          <li><span class="dot" style="background:#D9A21B"></span><span><strong>Amarillo</strong> · húmedo sin barro: tandas de 8 min y sin adelantar en frenada</span></li>
+          <li><span class="dot" style="background:#C23B1E"></span><span><strong>Rojo</strong> · barro, tormenta o rayos: se para; si no mejora en 30–45 min, se aplaza</span></li>
+        </ul>
+      </div>
+      <div class="side">
+        <h3>Si alguien se cae</h3>
+        <ol class="proto">
+          <li>Bandera roja: todos a boxes despacio</li>
+          <li>Acercarse sin mover al piloto</li>
+          <li>Dolor de cuello, mareo o no se mueve: no tocar ni quitar el casco</li>
+          <li>Papá llama al 112 con la dirección exacta</li>
+          <li>M espera en la entrada para guiar a la ambulancia</li>
+          <li>Revisar la moto antes de volver a pista</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="checkhead">
+    <div><h2>Checklist del evento</h2><p class="intro">Para cada Racing Day. Al empezar uno nuevo, vacíala.</p></div>
+    <button type="button" class="reset" id="reset">Vaciar checklist</button>
+  </div>
+  <div class="checks"><div class="cgroup"><h3>7 días antes</h3><ul class="tasks"><li><label class="task"><input type="checkbox" data-id="c-0-0"><span class="lbl">Confirmar nº de personas y versión del itinerario</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-0-1"><span class="lbl">Recibir fichas: tallas, alergias, menú</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-0-2"><span class="lbl">Cobrar el resto del pago</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-0-3"><span class="lbl">Revisión completa de las 4 motos</span><span class="who">M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-0-4"><span class="lbl">Revisar y reponer el kit de repuestos</span><span class="who">M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-0-5"><span class="lbl">Comprobar que el seguro cubre la fecha</span><span class="who">Julio</span></label></li></ul></div><div class="cgroup"><h3>48 horas antes</h3><ul class="tasks"><li><label class="task"><input type="checkbox" data-id="c-1-0"><span class="lbl">Mirar la previsión → semáforo de lluvia</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-1-1"><span class="lbl">Compra de comida y bebida</span><span class="who">Papá</span></label></li><li><label class="task"><input type="checkbox" data-id="c-1-2"><span class="lbl">Gasolina para todo el día y reserva</span><span class="who">M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-1-3"><span class="lbl">Trofeos y caja de naranjas listos</span><span class="who">Julio</span></label></li></ul></div><div class="cgroup"><h3>24 horas antes</h3><ul class="tasks"><li><label class="task"><input type="checkbox" data-id="c-2-0"><span class="lbl">Confirmación final por WhatsApp: hora, ubicación, botas</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-2-1"><span class="lbl">Cargar portátil, cámaras, móviles y walkies</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-2-2"><span class="lbl">Lavar y airear las equipaciones</span><span class="who">Julio / M</span></label></li></ul></div><div class="cgroup"><h3>Montaje · 8:00 a 10:00</h3><ul class="tasks"><li><label class="task"><input type="checkbox" data-id="c-3-0"><span class="lbl">Recorrer la pista: piedras, charcos, protecciones</span><span class="who">Julio / M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-3-1"><span class="lbl">Cámaras, portátil y TV; prueba de cronometraje</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-3-2"><span class="lbl">Motos calientes y presión de neumáticos</span><span class="who">M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-3-3"><span class="lbl">Equipaciones por tallas y sotocascos</span><span class="who">M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-3-4"><span class="lbl">Botiquín y extintor a la vista</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-3-5"><span class="lbl">Banderas en el puesto del comisario</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-3-6"><span class="lbl">Café, zumo de naranja y agua</span><span class="who">Papá</span></label></li><li><label class="task"><input type="checkbox" data-id="c-3-7"><span class="lbl">Zona de comida y fuego planificados</span><span class="who">Papá</span></label></li></ul></div><div class="cgroup"><h3>Durante el día</h3><ul class="tasks"><li><label class="task"><input type="checkbox" data-id="c-4-0"><span class="lbl">Descargos firmados antes de equiparse</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-4-1"><span class="lbl">Briefing de seguridad completo</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-4-2"><span class="lbl">Revisión de motos y gasolina entre tandas</span><span class="who">M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-4-3"><span class="lbl">Paella al fuego a las 12:00</span><span class="who">Papá</span></label></li><li><label class="task"><input type="checkbox" data-id="c-4-4"><span class="lbl">Briefing de carrera tras la comida</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-4-5"><span class="lbl">Banderas y fotos en carreras</span><span class="who">Comisario</span></label></li><li><label class="task"><input type="checkbox" data-id="c-4-6"><span class="lbl">Alcohol solo a partir del podio</span><span class="who">Todos</span></label></li></ul></div><div class="cgroup"><h3>Cierre</h3><ul class="tasks"><li><label class="task"><input type="checkbox" data-id="c-5-0"><span class="lbl">Foto de grupo con trofeos</span><span class="who">Comisario</span></label></li><li><label class="task"><input type="checkbox" data-id="c-5-1"><span class="lbl">Enviar tiempos y fotos esa noche</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-5-2"><span class="lbl">Pedir reseña o testimonio</span><span class="who">Julio</span></label></li><li><label class="task"><input type="checkbox" data-id="c-5-3"><span class="lbl">Anotar daños y repuestos usados</span><span class="who">M</span></label></li><li><label class="task"><input type="checkbox" data-id="c-5-4"><span class="lbl">Guardar CSV de tiempos y vídeos</span><span class="who">Julio</span></label></li></ul></div></div>
+</section>
+</main>
+<footer class="wrap">Masía Racing Day · by Masía Torregrosa · Panel privado del proyecto</footer>
+
+<script>
+(function(){
+  var KEY='masia-racing-day-panel-v1', state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ state={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+  var boxes=document.querySelectorAll('input[type=checkbox][data-id]');
+  boxes.forEach(function(b){ b.checked=!!state[b.dataset.id];
+    b.addEventListener('change',function(){ state[b.dataset.id]=b.checked; save(); progress(); }); });
+  function progress(){
+    var t=document.querySelectorAll('#pendiente input[data-id]'), d=0;
+    t.forEach(function(b){ if(b.checked) d++; });
+    var pct=t.length?Math.round(d*100/t.length):0;
+    document.getElementById('pfill').style.width=pct+'%';
+    document.getElementById('pbar').setAttribute('aria-valuenow',pct);
+    document.getElementById('ptext').textContent='Gestiones y decisiones: '+d+' de '+t.length+' hechas';
+  }
+  progress();
+  var today=new Date(); today.setHours(0,0,0,0);
+  function parse(s){ var p=s.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+  var piloto=parse('2027-01-16'), days=Math.round((piloto-today)/86400000);
+  var dn=document.getElementById('days'), dl=document.getElementById('dayslab');
+  if(days>0){ dn.textContent=days; dl.textContent=(days===1?'día':'días')+' para la jornada piloto · sábado 16 de enero'; }
+  else if(days===0){ dn.textContent='Hoy'; dl.textContent='es la jornada piloto'; }
+  else { dn.textContent='✓'; dl.textContent='jornada piloto celebrada el 16 de enero'; }
+  var fmt=new Intl.DateTimeFormat('es-ES',{day:'numeric',month:'long',year:'numeric'});
+  document.querySelectorAll('.gest').forEach(function(li){
+    var due=parse(li.dataset.due), left=Math.round((due-today)/86400000), el=li.querySelector('.due');
+    var txt='Límite: '+fmt.format(due);
+    if(left<0){ li.classList.add('late'); txt+=' · vencida'; }
+    else if(left<=15){ li.classList.add('soon'); txt+=' · '+(left===0?'hoy':'quedan '+left+' días'); }
+    el.textContent=txt;
+  });
+  document.querySelectorAll('.cal').forEach(function(li){
+    var a=parse(li.dataset.from), b=parse(li.dataset.to);
+    if(today>=a && today<=b) li.classList.add('now'); else if(today>b) li.classList.add('past');
+  });
+  var tabs=document.querySelectorAll('.tabs button');
+  tabs.forEach(function(t){ t.addEventListener('click',function(){
+    tabs.forEach(function(o){ o.setAttribute('aria-selected', o===t?'true':'false'); });
+    document.querySelectorAll('.panel').forEach(function(p){ p.hidden = p.dataset.panel!==t.dataset.tab; });
+  }); });
+  document.getElementById('reset').addEventListener('click',function(){
+    document.querySelectorAll('#checklist input[data-id]').forEach(function(b){ b.checked=false; delete state[b.dataset.id]; });
+    save();
+  });
+})();
+</script>
+</body>
+</html>
